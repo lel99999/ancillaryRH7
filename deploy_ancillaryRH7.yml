@@ -1,0 +1,66 @@
+- hosts: ancillaryRH7
+  vars:  
+    custom_repo: true
+  become: yes
+  become_method: sudo
+# pre_tasks:
+#   - name: register RHEL7.5
+#     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
+  tasks:
+    - name: download epel
+      shell:  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -O /tmp/epel-release-latest-7.noarch.rpm   
+    - name: Install epel
+      shell:  yum -y localinstall /tmp/epel*rpm
+    - name: Install python-pip
+      yum:
+        name: python-pip
+        state: latest
+    - name: install gdown
+      shell: pip install gdown
+    - name: use gdown to download and build local repo
+      shell: gdown https://drive.google.com/uc?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV
+#   - name: Install pip
+#     easy_install:
+#       name: pip
+#       state: latest
+#   - name:  Build custom local repo
+#     shell:  wget https://drive.google.com/open?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV /tmp
+    - name:  Extract repo to destination point
+      shell:  unzip /home/vagrant/devrepo-master.zip -d /opt
+    - name: install createrepo
+      yum:
+        name: createrepo
+        state: latest
+    - name: create local repo 
+      shell: createrepo /opt/devrepo-master/Packages
+    - name: create local repo file with updated link
+      file:
+        path: /etc/yum.repos.d/local.repo
+        state: touch
+        mode: "u=rw,g=r,o=r" 
+    - name: edit local.repo file
+      shell: |
+        echo '[localrepo]\n
+        name=localrepo\n
+        baseurl=file:///opt/devrepo-master/Packages\n
+        enabled=1\n
+        gpgcheck=0\n' >> /etc/yum.repos.d/local.repo
+  roles:
+    - umask
+    - devtools
+    - open_office
+    - evince
+    - stattransfer
+    - sublime
+    - ultra-edit
+  post_tasks:
+    - name: Install texlive
+      yum:
+        name: texlive
+        state: present
+#   - name: remove RHEL7.5
+#     command:  "/usr/bin/subscription-manager remove --all"
+#   - name: unregister RHEL7.5
+#     command:  "/usr/bin/subscription-manager unregister"
+#   - name: clean RHEL7.5
+#     command:  "/usr/bin/subscription-manager clean"
