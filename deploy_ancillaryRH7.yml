@@ -58,7 +58,7 @@
   post_tasks:
     - name: Install texlive
       yum:
-        name: texlive
+        name: texlive2016
         state: present
 #   - name: remove RHEL7.5
 #     command:  "/usr/bin/subscription-manager remove --all"
