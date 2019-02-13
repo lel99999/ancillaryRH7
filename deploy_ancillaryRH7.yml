@@ -51,8 +51,10 @@
     - open_office
     - evince
     - stattransfer
-    - sublime
-    - ultra-edit
+#   - sublime
+    - sublime3
+#   - ultra-edit
+    - ultra-editRH7
   post_tasks:
     - name: Install texlive
       yum:
