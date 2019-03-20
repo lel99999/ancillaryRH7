@@ -40,8 +40,8 @@
 #     easy_install:
 #       name: pip
 #       state: latest
-#   - name:  Build custom local repo
-#     shell:  wget https://drive.google.com/open?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV /tmp
+    - name:  Build custom local repo
+      shell:  wget https://drive.google.com/open?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV /tmp
     - name:  Extract repo to destination point
       shell:  unzip /home/vagrant/devrepo-master.zip -d /opt
     - name: install createrepo
