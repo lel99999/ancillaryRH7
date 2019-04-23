@@ -10,6 +10,7 @@
         msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
     - name: register RHEL7.5
       command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach"
+      when: _uid != "" and _pwd != ""
 #     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
     - name: register RHEL7 repo
       command: "/usr/bin/subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms"
@@ -39,8 +40,8 @@
 #     easy_install:
 #       name: pip
 #       state: latest
-#   - name:  Build custom local repo
-#     shell:  wget https://drive.google.com/open?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV /tmp
+    - name:  Build custom local repo
+      shell:  wget https://drive.google.com/open?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV /tmp
     - name:  Extract repo to destination point
       shell:  unzip /home/vagrant/devrepo-master.zip -d /opt
     - name: install createrepo
