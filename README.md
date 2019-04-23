@@ -10,4 +10,5 @@ CentOS6 ->  RHEL7.x
 - evince                ->`` 	  evince 3 
 - stattransfer          ->        stattransfer 14 (stlinux64_install)
 - sublime               ->	  sublime 3 (build 34207 x86_64)
+- texlive		->	  texlive2016 
 - ultra-edit            ->        ultra-edit 18.0-0.40 (x86_64)
