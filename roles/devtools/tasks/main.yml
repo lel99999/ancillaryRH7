@@ -4,6 +4,8 @@
   become: yes
   become_method: sudo
   command: yum-config-manager --enable rhel-server-rhscl-7-rpms
+  tags:
+    - devtools7
 
 - name: Install Collection
   become: yes
@@ -11,11 +13,15 @@
   yum:
     name: devtools-7
     state: present
+  tags:
+    - devtools7
 
 - name: Start using devtools
   become: yes
   become_method: sudo
   command: scl enable devtoolset-7 bash
+  rags:
+    - devtools7
 
 # CentOS
 - name: Install devtools repo
