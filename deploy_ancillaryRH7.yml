@@ -23,7 +23,7 @@
       register: enabled_repos
     - debug:
         msg: "RHEL Enabled Repos: {{ enabled_repos }}" 
-  tasks:
+# tasks:
     - name: download epel
       shell:  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -O /tmp/epel-release-latest-7.noarch.rpm   
     - name: Install epel
@@ -32,8 +32,12 @@
       yum:
         name: python27-python-pip
         state: latest
+    - name: enable scl
+      become: yes
+      become_method: sudo
+      shell: scl enable python27 bash
     - name: install gdown
-      shell: pip install gdown
+      shell: /opt/rh/python27/root/usr/bin/pip install gdown
     - name: use gdown to download and build local repo
       shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z
 #     shell: gdown https://drive.google.com/uc?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV
