@@ -64,8 +64,10 @@
         gpgcheck=0\n' >> /etc/yum.repos.d/local.repo
   roles:
     - umask
-    - devtools
-    - open_office
+#   - devtools
+    - devtools7
+#   - open_office
+    - open_officeRH7
     - evince
     - stattransfer
 #   - sublime

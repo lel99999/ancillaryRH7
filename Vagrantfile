@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "ancillaryRH7" do |ancillaryRH7|
 #   ancillaryRH7.vm.box = "generic/rhel7"
+#    ancillaryRH7.vm.box = "RH7.5_base"
     ancillaryRH7.vm.box = "RH7.5_baserepo"
     #ancillaryRH7.vm.box = "javier-lopez/rhel-7.4"
     #ancillaryRH7.vm.box = "xianlin/rhel-7.4"
