@@ -30,26 +30,44 @@
       shell:  yum -y localinstall /tmp/epel*rpm
     - name: Install python-pip
       yum:
-        name: python-pip
+        name: python27-python-pip
         state: latest
     - name: install gdown
       shell: pip install gdown
     - name: use gdown to download and build local repo
-      shell: gdown https://drive.google.com/uc?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV
+      shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z
+#     shell: gdown https://drive.google.com/uc?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV
 #   - name: Install pip
 #     easy_install:
 #       name: pip
 #       state: latest
-    - name:  Build custom local repo
-      shell:  wget https://drive.google.com/open?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV /tmp
-    - name:  Extract repo to destination point
-      shell:  unzip /home/vagrant/devrepo-master.zip -d /opt
+    - name: Build custom local repo
+      shell: wget https://drive.google.com/open?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z /tmp
+    - name: make localrepo directory
+      shell: mkdir -p /opt/ancillary_local
+    - name: make OpenOffice directory
+      shell: mkdir -p /opt/ancillary_local/OO416
+    - name: make Sublime3 directory
+      shell: mkdir -p /opt/ancillary_local/Sublime3
+
+    - name: Extract repo to destination point
+      shell:  tar xvf /tmp/ancilRH7_repo.tar.gz -C /opt/ancillary_local
+    - name: Extract OpenOffice 4.1.6 
+      shell:  tar xvf /opt/ancillary_local/Apache_OpenOffice_4.1.6_Linux_x86-64_install-rpm_en-US.tar.gz -C /opt/ancillary_local/OO416 
+    - name: install bz2
+      yum:
+        name: bzip2
+
+    - name: Extract Sublime3 
+      shell:  tar xvf /opt/ancillary_local/sublime_text_3_build_3207_x64.tar.bz2 -C /opt/ancillary_local/Sublime3
+
     - name: install createrepo
       yum:
         name: createrepo
         state: latest
     - name: create local repo 
-      shell: createrepo /opt/devrepo-master/Packages
+      shell: createrepo /opt/ancillary_local/OO416
+#     shell: createrepo /opt/devrepo-master/Packages
     - name: create local repo file with updated link
       file:
         path: /etc/yum.repos.d/local.repo
@@ -59,7 +77,7 @@
       shell: |
         echo '[localrepo]\n
         name=localrepo\n
-        baseurl=file:///opt/devrepo-master/Packages\n
+        baseurl=file:///opt/ancillary_local/OO416\n
         enabled=1\n
         gpgcheck=0\n' >> /etc/yum.repos.d/local.repo
   roles:

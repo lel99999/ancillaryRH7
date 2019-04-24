@@ -5,5 +5,5 @@
     state: present
     disable_gpg_check: yes
   with_items:
-    - "{{open_office_rpms}}"
+    - "/opt/ancillary_local/OO416/en-US/RPMS/{{open_office_rpms}}"
   when: custom_repo
