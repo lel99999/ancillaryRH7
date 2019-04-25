@@ -87,8 +87,8 @@
         mode: "u=rw,g=r,o=r" 
     - name: edit local.repo file
       shell: |
-        echo '[localrepo]\n
-        name=localrepo\n
+        echo '[localrepo]
+        name=localrepo
         baseurl=file:///opt/ancillary_local/OO416\n
         enabled=1\n
         gpgcheck=0\n' >> /etc/yum.repos.d/local.repo
