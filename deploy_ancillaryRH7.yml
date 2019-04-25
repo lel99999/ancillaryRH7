@@ -7,7 +7,8 @@
   become_method: sudo
   pre_tasks:
     - debug:
-        msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
+        msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
+#       msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
     - name: register RHEL7.5
       command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach"
       when: _uid != "" and _pwd != ""
@@ -28,25 +29,32 @@
       shell:  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -O /tmp/epel-release-latest-7.noarch.rpm   
     - name: Install epel
       shell:  yum -y localinstall /tmp/epel*rpm
+
     - name: Install python-pip
-      yum:
-        name: python27-python-pip
-        state: latest
-    - name: enable scl
-      become: yes
-      become_method: sudo
-      shell: scl enable python27 bash
+      shell: yum install -y python27 python-pip
     - name: install gdown
-      shell: /opt/rh/python27/root/usr/bin/pip install gdown
+      shell: pip install gdown  
+#     yum:
+#       name: python27-python-pip
+#       state: latest
+    - name: Install python 3.6 and pip
+      shell: yum install -y python36 python36-pip
+
+#   - name: enable scl
+#     become: yes
+#     become_method: sudo
+#     shell: scl enable python27 bash
+#   - name: install gdown
+#     shell: /opt/rh/python27/root/usr/bin/pip install gdown
     - name: use gdown to download and build local repo
-      shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z
+      shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z -O /tmp/ancilRH7_repo.tar.gz
 #     shell: gdown https://drive.google.com/uc?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV
 #   - name: Install pip
 #     easy_install:
 #       name: pip
 #       state: latest
-    - name: Build custom local repo
-      shell: wget https://drive.google.com/open?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z /tmp
+#    - name: Build custom local repo
+#      shell: wget https://drive.google.com/open?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z /tmp
     - name: make localrepo directory
       shell: mkdir -p /opt/ancillary_local
     - name: make OpenOffice directory

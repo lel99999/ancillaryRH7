@@ -11,7 +11,7 @@
   become: yes
   become_method: sudo
   yum:
-    name: devtools-7
+    name: devtoolset-7
     state: present
   tags:
     - devtools7

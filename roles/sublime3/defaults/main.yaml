@@ -1,4 +1,5 @@
 ---
 sublime_local_artifact_directory: /artifacts
-sublime_install_directory: /usr/local/sublime
+#sublime_install_directory: /usr/local/sublime
+sublime_install_directory: /opt/ancillary_local/Sublime3
 sublime_remote_artifact_directory: /tmp

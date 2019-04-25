@@ -1,13 +1,13 @@
 ---
 # RHEL 7
-- name: Install devtools-7
-  become: yes
-  become_method: sudo
-  command: yum-config-manager --enable rhel-server-rhscl-7-rpms
-  tags:
-    - devtools7
+#- name: Add RHSCL Repo
+# become: yes
+# become_method: sudo
+# command: yum-config-manager --enable rhel-server-rhscl-7-rpms
+# tags:
+#   - devtools7
 
-- name: Install Collection
+- name: Install Devtools 7
   become: yes
   become_method: sudo
   yum:
