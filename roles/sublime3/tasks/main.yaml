@@ -27,7 +27,8 @@
     dest: "{{ sublime_install_directory }}/"
     owner: root
     group: root
-    mode: a+r
+    mode: 0755
+#   mode: a+r
   when: custom_repo
   tags:
     - sublime
