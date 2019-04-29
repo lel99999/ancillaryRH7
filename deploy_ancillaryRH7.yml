@@ -98,9 +98,9 @@
       shell: |
         echo '[localrepo]
         name=localrepo
-        baseurl=file:///opt/ancillary_local/OO416\n
-        enabled=1\n
-        gpgcheck=0\n' >> /etc/yum.repos.d/local.repo
+        baseurl=file:///opt/ancillary_local/OO416
+        enabled=1
+        gpgcheck=0' >> /etc/yum.repos.d/local.repo
   roles:
     - umask
 #   - devtools
@@ -109,18 +109,19 @@
     - open_officeRH7
 #   - evince
 #   See line #39
-    - stattransfer
+#   - stattransfer
 #   - sublime
     - sublime3
 #   - ultra-edit
     - ultra-editRH7
-    - textliveRH7
+    - texliveRH7
+    - stattransfer
 
   post_tasks:
-    - name: Install texlive
-      yum:
-        name: texlive2016
-        state: present
+#   - name: Install texlive
+#     yum:
+#       name: texlive2016
+#       state: present
 
 #   - name: remove RHEL7.5
 #     command:  "/usr/bin/subscription-manager remove --all"

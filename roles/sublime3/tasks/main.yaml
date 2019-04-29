@@ -7,22 +7,23 @@
   tags:
     - sublime
 
-- name: Unarchive sublime (from remote)
-  unarchive:
-    copy: no
-    src: "https://download.sublimetext.com/sublime_text_3_build_3176_x64.tar.bz2"
-    dest: "{{ sublime_install_directory }}"
-    owner: root
-    group: root
-    mode: a+r
-  when: not custom_repo
-  tags:
-    - sublime
+# name: Unarchive sublime (from remote)
+# unarchive:
+#   copy: no
+#   src: "https://download.sublimetext.com/sublime_text_3_build_3176_x64.tar.bz2"
+#   dest: "{{ sublime_install_directory }}"
+#   owner: root
+#   group: root
+#   mode: a+r
+# when: not custom_repo
+# tags:
+#   - sublime
 
 - name: Unarchive sublime
   unarchive:
     copy: yes
-    src: "{{ sublime_local_artifact_directory }}/sublime_text_3_build_3176_x64.tar.bz2"
+#   src: "{{ sublime_local_artifact_directory }}/sublime_text_3_build_3176_x64.tar.bz2"
+    src: "{{ sublime_local_artifact_directory }}/sublime_text_3_build_3207_x64.tar.bz2"
     dest: "{{ sublime_install_directory }}/"
     owner: root
     group: root
