@@ -72,6 +72,9 @@
       shell: mkdir -p /opt/ancillary_local/Sublime3
     - name: make Sublime3 install directory
       shell: mkdir -p /usr/local/sublime
+    - name: make stattransfer14 install directory
+      shell: mkdir -p /usr/local/StatTransfer14
+
 
     - name: Extract repo to destination point
       shell:  tar xvf /tmp/ancilRH7_repo.tar.gz -C /opt/ancillary_local
@@ -115,6 +118,7 @@
 #   - evince
 #   See line #39 (evince)
 #   - stattransfer
+    - stattransfer14
 #   - sublime
     - sublime3
 #   - ultra-edit
