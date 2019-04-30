@@ -10,7 +10,7 @@
 # when: custom_repo
 
 - name: download texstudio  
-  shell:  wget http://download.opensuse.org/repositories/home:/jsundermeyer/CentOS_CentOS-7/home:jsundermeyer.repo -O /etc/yum.repo.d/texstudio.repo
+  shell:  wget http://download.opensuse.org/repositories/home:/jsundermeyer/CentOS_CentOS-7/home:jsundermeyer.repo -O /etc/yum.repos.d/texstudio.repo
 
 - name: update repo
   shell: yum update
