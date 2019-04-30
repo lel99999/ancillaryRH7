@@ -70,6 +70,8 @@
       shell: mkdir -p /opt/ancillary_local/OO416
     - name: make Sublime3 directory
       shell: mkdir -p /opt/ancillary_local/Sublime3
+    - name: make Sublime3 install directory
+      shell: mkdir -p /usr/local/sublime
 
     - name: Extract repo to destination point
       shell:  tar xvf /tmp/ancilRH7_repo.tar.gz -C /opt/ancillary_local
@@ -81,6 +83,9 @@
 
     - name: Extract Sublime3 
       shell:  tar xvf /opt/ancillary_local/sublime_text_3_build_3207_x64.tar.bz2 -C /opt/ancillary_local/Sublime3
+
+    - name: Extract Sublime3 to install dir
+      shell:  tar xvf /opt/ancillary_local/sublime_text_3_build_3207_x64.tar.bz2 -C /usr/local/sublime 
 
     - name: install createrepo
       yum:
@@ -108,14 +113,13 @@
 #   - open_office
     - open_officeRH7
 #   - evince
-#   See line #39
+#   See line #39 (evince)
 #   - stattransfer
 #   - sublime
     - sublime3
 #   - ultra-edit
     - ultra-editRH7
     - texliveRH7
-    - stattransfer
 
   post_tasks:
 #   - name: Install texlive
