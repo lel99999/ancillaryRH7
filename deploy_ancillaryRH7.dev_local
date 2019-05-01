@@ -1,4 +1,4 @@
-- hosts: wdcreancil02
+- hosts: ancillaryRH7
   vars:  
     custom_repo: true
   vars_files:
@@ -55,11 +55,8 @@
 #     shell: scl enable python27 bash
 #   - name: install gdown
 #     shell: /opt/rh/python27/root/usr/bin/pip install gdown
-
-#     Already secure copy to destination host
-#   - name: use gdown to download and build local repo
-#     shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z -O /tmp/ancilRH7_repo.tar.gz
-
+    - name: use gdown to download and build local repo
+      shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z -O /tmp/ancilRH7_repo.tar.gz
 #     shell: gdown https://drive.google.com/uc?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV
 #   - name: Install pip
 #     easy_install:
