@@ -48,6 +48,8 @@
 #       state: latest
     - name: Install python 3.6 and pip
       shell: yum install -y python36 python36-pip
+    - name: Install bash autocomplete
+      shell: yum install -y bash-completion bash-completion-extras
 
 #   - name: enable scl
 #     become: yes
