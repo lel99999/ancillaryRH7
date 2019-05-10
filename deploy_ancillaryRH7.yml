@@ -1,4 +1,4 @@
-- hosts: wdcreancil02
+- hosts: "{{ env_host }}"
   vars:  
     custom_repo: true
   vars_files:
