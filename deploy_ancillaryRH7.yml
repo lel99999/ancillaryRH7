@@ -1,4 +1,4 @@
-- hosts: wdcreancil02
+- hosts: wdcdevreancil02
   vars:  
     custom_repo: true
   vars_files:
