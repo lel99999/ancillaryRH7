@@ -1,4 +1,5 @@
-- hosts: "{{ env_host }}"
+#- hosts: "{{ env_host }}"
+- hosts: ancillaryRH7
   vars:  
     custom_repo: true
   vars_files:
@@ -69,6 +70,8 @@
 #       state: latest
 #    - name: Build custom local repo
 #      shell: wget https://drive.google.com/open?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z /tmp
+#
+#      DEV, PROD copy ancilRH&_repo.tar.gz to /tmp on host
     - name: make localrepo directory
       shell: mkdir -p /opt/ancillary_local
     - name: make OpenOffice directory
