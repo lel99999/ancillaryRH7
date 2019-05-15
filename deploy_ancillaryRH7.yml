@@ -1,18 +1,17 @@
-#- hosts: "{{ env_host }}"
-- hosts: ancillaryRH7
+- hosts: wdcreancil02
   vars:  
     custom_repo: true
-  vars_files:
-    - ~/RHACCOUNT
+# vars_files:
+#   - ~/RHACCOUNT
   become: yes
   become_method: sudo
   pre_tasks:
-    - debug:
-        msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
+#   - debug:
+#       msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
 #       msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
-    - name: register RHEL7.5
-      command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach"
-      when: _uid != "" and _pwd != ""
+#   - name: register RHEL7.5
+#     command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach"
+#     when: _uid != "" and _pwd != ""
 #     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
     - name: register RHEL7 repo
       command: "/usr/bin/subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-optional-rpms"
@@ -49,12 +48,8 @@
 #       state: latest
     - name: Install python 3.6 and pip
       shell: yum install -y python36 python36-pip
-
     - name: Install bash autocomplete
       shell: yum install -y bash-completion bash-completion-extras
-
-#   - name: update keyboard shortcut
-#     shell: cp /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 
 #   - name: enable scl
 #     become: yes
@@ -74,8 +69,6 @@
 #       state: latest
 #    - name: Build custom local repo
 #      shell: wget https://drive.google.com/open?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z /tmp
-#
-#      DEV, PROD copy ancilRH&_repo.tar.gz to /tmp on host
     - name: make localrepo directory
       shell: mkdir -p /opt/ancillary_local
     - name: make OpenOffice directory
@@ -89,8 +82,12 @@
 
     - name: make /artifacts dir
       shell: mkdir -p /artifacts
+    - name: check if symlink exists
+      stat: path=/artifacts/stlinux64_install
+      register: symlink
     - name: create Symlink for stattransfer14 executable
       shell: ln -s /opt/ancillary_local/stlinux64_install /artifacts/stlinux64_install
+      when: symlink.stat.exists == False
 
     - name: Extract repo to destination point
       shell:  tar xvf /tmp/ancilRH7_repo.tar.gz -C /opt/ancillary_local
