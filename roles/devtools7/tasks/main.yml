@@ -20,7 +20,7 @@
   become: yes
   become_method: sudo
   command: scl enable devtoolset-7 bash
-  rags:
+  tags:
     - devtools7
 
 # CentOS
