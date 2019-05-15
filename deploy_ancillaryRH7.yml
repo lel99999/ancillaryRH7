@@ -49,8 +49,12 @@
 #       state: latest
     - name: Install python 3.6 and pip
       shell: yum install -y python36 python36-pip
+
     - name: Install bash autocomplete
       shell: yum install -y bash-completion bash-completion-extras
+
+#   - name: update keyboard shortcut
+#     shell: cp /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 
 #   - name: enable scl
 #     become: yes
