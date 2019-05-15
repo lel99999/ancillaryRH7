@@ -16,10 +16,12 @@
     - stattransfer
 
 - name: Change owner  permissions
-  shell: chown -R root:root {{stattransfer_local_bin_directory}}/stlinux64_install
+  shell: chown -R root:root /opt/ancillary_local/stlinux64_install
+# shell: chown -R root:root {{stattransfer_local_bin_directory}}/stlinux64_install
 
 - name: Change folder/file permissions
-  shell: chmod +x {{stattransfer_local_bin_directory}}/stlinux64_install
+  shell: chmod +x /opt/ancillary_local/stlinux64_install
+# shell: chmod +x {{stattransfer_local_bin_directory}}/stlinux64_install
 
 #- name: Copy over the install bin
 # copy:
