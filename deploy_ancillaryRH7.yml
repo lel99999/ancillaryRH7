@@ -82,8 +82,12 @@
 
     - name: make /artifacts dir
       shell: mkdir -p /artifacts
+    - name: check if symlink exists
+      stat: path=/artifacts/stlinux64_install
+      register: symlink
     - name: create Symlink for stattransfer14 executable
       shell: ln -s /opt/ancillary_local/stlinux64_install /artifacts/stlinux64_install
+      when: symlink.stat.exists == False
 
     - name: Extract repo to destination point
       shell:  tar xvf /tmp/ancilRH7_repo.tar.gz -C /opt/ancillary_local
