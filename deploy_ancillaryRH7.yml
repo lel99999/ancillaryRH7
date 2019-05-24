@@ -41,7 +41,18 @@
 
     - name: install mousepad
       shell: yum -y install mousepad
-
+    = name: create texteditor.desktop
+      shell: |
+        echo '[Desktop Entry]
+        Version=1.0
+        Type=Application
+        Name=TextEditor
+        Comment=Mousepad
+        Exec=mousepad
+        Icon=accessories-text-editor
+        Path=
+        Terminal=false
+        StartupNotify=true' >> /home/vagrant/Desktop/texteditor.desktop
     - name: Install python-pip
       shell: yum install -y python27 python-pip
     - name: install gdown
