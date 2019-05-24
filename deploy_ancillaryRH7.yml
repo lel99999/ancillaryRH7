@@ -39,6 +39,9 @@
     - name: install Evince
       shell: yum -y install evince
 
+    - name: install mousepad
+      shell: yum -y install mousepad
+
     - name: Install python-pip
       shell: yum install -y python27 python-pip
     - name: install gdown
