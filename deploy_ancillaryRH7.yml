@@ -1,16 +1,17 @@
-- hosts: wdcreancil02
+- hosts: ancillaryRH7
+  #- hosts: wdcreancil02
   vars:  
     custom_repo: true
-# vars_files:
-#   - ~/RHACCOUNT
+  vars_files:
+    - ~/RHACCOUNT
   become: yes
   become_method: sudo
   pre_tasks:
-#   - debug:
+    - debug:
 #       msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
-#       msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
-#   - name: register RHEL7.5
-#     command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach"
+        msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
+    - name: register RHEL7.5
+      command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach"
 #     when: _uid != "" and _pwd != ""
 #     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
     - name: register RHEL7 repo
@@ -40,18 +41,18 @@
       shell: yum -y install evince
     - name: install mousepad
       shell: yum -y install mousepad
-    = name: create texteditor.desktop
-      shell: |
-        echo '[Desktop Entry]
-        Version=1.0
-        Type=Application
-        Name=TextEditor
-        Comment=Mousepad
-        Exec=mousepad
-        Icon=accessories-text-editor
-        Path=
-        Terminal=false
-        StartupNotify=true' >> /home/vagrant/Desktop/texteditor.desktop
+#   - name: create texteditor.desktop
+#     shell: |
+#       echo '[Desktop Entry]
+#       Version=1.0
+#       Type=Application
+#       Name=TextEditor
+#       Comment=Mousepad
+#       Exec=mousepad
+#       Icon=accessories-text-editor
+#       Path=
+#       Terminal=false
+#       StartupNotify=true' >> /home/vagrant/Desktop/texteditor.desktop
     - name: Install python-pip
       shell: yum install -y python27 python-pip
     - name: install gdown
@@ -72,16 +73,16 @@
 #     shell: /opt/rh/python27/root/usr/bin/pip install gdown
 
 #     Already secure copy to destination host
-#   - name: use gdown to download and build local repo
-#     shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z -O /tmp/ancilRH7_repo.tar.gz
+    - name: use gdown to download and build local repo
+      shell: gdown https://drive.google.com/uc?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z -O /tmp/ancilRH7_repo.tar.gz
 
 #     shell: gdown https://drive.google.com/uc?id=139Z0MfyT0WVWIzP_uwM2KxPCrfYs_vUV
 #   - name: Install pip
 #     easy_install:
 #       name: pip
 #       state: latest
-#    - name: Build custom local repo
-#      shell: wget https://drive.google.com/open?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z /tmp
+#   - name: Build custom local repo
+#     shell: wget https://drive.google.com/open?id=1qaZH9_SrGyjHjWT3P2WtvZAhEkP9YG1Z /tmp
     - name: make localrepo directory
       shell: mkdir -p /opt/ancillary_local
     - name: make OpenOffice directory
