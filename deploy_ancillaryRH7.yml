@@ -209,6 +209,8 @@
     - texliveRH7
 
   post_tasks:
+    - name: register mime types
+      shell: update-mime-database /usr/share/mime/packages/
 #   - name: Install texlive
 #     yum:
 #       name: texlive2016
