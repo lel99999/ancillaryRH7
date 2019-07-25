@@ -209,6 +209,12 @@
     - texliveRH7
 
   post_tasks:
+    - name: register mime types
+      shell: update-mime-database /usr/share/mime/packages/
+    - name: create desktop application
+      shell: 
+    - name: update desktop database
+      shell: update-desktop-database ~/.local/share/applications
 #   - name: Install texlive
 #     yum:
 #       name: texlive2016
