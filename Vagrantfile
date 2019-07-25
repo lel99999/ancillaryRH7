@@ -14,14 +14,12 @@ Vagrant.configure("2") do |config|
   config.vm.define "ancillaryRH7" do |ancillaryRH7|
 #   ancillaryRH7.vm.box = "generic/rhel7"
 #    ancillaryRH7.vm.box = "RH7.5_base"
-    ancillaryRH7.vm.box = "RH7.5_baserepo"
-    #ancillaryRH7.vm.box = "javier-lopez/rhel-7.4"
-    #ancillaryRH7.vm.box = "xianlin/rhel-7.4"
+    ancillaryRH7.vm.box = "clouddood/RH7.5_baserepo"
     ancillaryRH7.vm.hostname = "ancillaryRH7"
     ancillaryRH7.vm.network "private_network", ip: "192.168.60.149"
     ancillaryRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.189 ancillaryRH7.local ancillaryRH7' >> /etc/hosts"
     ancillaryRH7.vm.provision "ansible" do |ansible|
-      ansible.playbook = "deploy_ancillaryRH7.yml"
+      ansible.playbook = "deploy_ancillaryRH7.dev_local"
       ansible.inventory_path = "vagrant_hosts"
       #ansible.tags = ansible_tags
       #ansible.verbose = ansible_verbosity

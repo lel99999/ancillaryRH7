@@ -60,3 +60,10 @@
     dest: /etc/profile.d/configure_stattransfer.sh
   tags:
     - stattransfer
+
+- name: Copy configure_stattransfer to /etc/profile.d
+  yum:
+    name: libpng12 
+    state: present
+  tags:
+    - stattransfer
