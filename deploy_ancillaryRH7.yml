@@ -2,6 +2,7 @@
   #- hosts: wdcreancil02
   vars:  
     custom_repo: true
+    envir: DEV.local
   vars_files:
     - ~/RHACCOUNT
   become: yes
@@ -67,7 +68,7 @@
 #       msg: "Variables: _uid = {{ _uid }}, _pwd = **********"
         msg: "Variables: _uid = {{ _uid }}, _pwd = {{ _pwd }}"
     - name: register RHEL7.5
-      command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach"
+      command: "/usr/bin/subscription-manager register --username {{ _uid }} --password {{ _pwd }} --auto-attach --force"
 #     when: _uid != "" and _pwd != ""
 #     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
     - name: register RHEL7 repo
@@ -86,6 +87,10 @@
 #     shell:  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -O /tmp/epel-release-latest-7.noarch.rpm   
 #   - name: Install epel
 #     shell:  yum -y localinstall /tmp/epel*rpm
+    - name: install pdfgrep
+      yum:
+        name: pdfgrep
+        state: present
 
     - name: install X Window System
       shell: yum -y groupinstall "X Window System"
