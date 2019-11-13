@@ -82,10 +82,10 @@
     - debug:
         msg: "RHEL Enabled Repos: {{ enabled_repos }}" 
 # tasks:
-    - name: download epel
-      shell:  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -O /tmp/epel-release-latest-7.noarch.rpm   
-    - name: Install epel
-      shell:  yum -y localinstall /tmp/epel*rpm
+#   - name: download epel
+#     shell:  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -O /tmp/epel-release-latest-7.noarch.rpm   
+#   - name: Install epel
+#     shell:  yum -y localinstall /tmp/epel*rpm
 
     - name: install X Window System
       shell: yum -y groupinstall "X Window System"
@@ -152,6 +152,7 @@
 
     - name: make /artifacts dir
       shell: mkdir -p /artifacts
+      when: envir == "DEV.local" or envir == "DEV"
     - name: check if symlink exists
       stat: path=/artifacts/stlinux64_install
       register: symlink
@@ -194,6 +195,7 @@
         gpgcheck=0' >> /etc/yum.repos.d/local.repo
   roles:
     - umask
+    - epel7
 #   - devtools
     - devtools7
 #   - open_office
