@@ -201,6 +201,9 @@
   roles:
     - umask
     - epel7
+    - odbc7
+    - openjdk1.8
+    - postgresql-client
 #   - devtools
     - devtools7
 #   - open_office
