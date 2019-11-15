@@ -205,6 +205,8 @@
     - epel7
     - odbc7
     - openjdk1.8
+    - python2RH7
+    - python3RH7
     - postgresql-client
 #   - devtools
     - devtools7
