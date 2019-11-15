@@ -2,7 +2,7 @@
   #- hosts: wdcreancil02
   vars:  
     custom_repo: true
-    envir: DEV.local
+    envir: "{%when envir is undefined%}DEV.local{% endif %}"
   vars_files:
     - ~/RHACCOUNT
   become: yes
