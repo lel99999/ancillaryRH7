@@ -1,13 +1,19 @@
 ---
 - name: Install texlive files
-  shell: yum install -y {{item}}
+  shell: yum install -y texlive texlive-*.noarch
+# shell: yum install -y {{item}}
 # yum:
 #   name: "{{item}}"
 #   state: present
 #   disable_gpg_check: yes
-  with_items:
-    - "{{texlive_packages}}"
+# with_items:
+#   - "{{texlive_packages}}"
 # when: custom_repo
+ 
+- name: Install texmaker
+  yum:
+    name: texmaker
+    state: present
 
 - name: download texstudio  
   shell:  wget http://download.opensuse.org/repositories/home:/jsundermeyer/CentOS_CentOS-7/home:jsundermeyer.repo -O /etc/yum.repos.d/texstudio.repo
