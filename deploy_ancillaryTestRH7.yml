@@ -93,15 +93,30 @@
         state: present
 
     - name: install X Window System
-      shell: yum -y groupinstall "X Window System"
+#     shell: yum -y groupinstall "X Window System"
+      yum:
+        name: "@X Window System"
+        state: present
 
     - name: install XFCE
-      shell: yum -y groupinstall "xfce"
+#     shell: yum -y groupinstall "xfce"
+      yum:
+        name: "@xfce"
+        state: present
 
     - name: install Evince
-      shell: yum -y install evince
+#     shell: yum -y install evince
+      yum:
+        name: evince
+        state: present
+
     - name: install mousepad
-      shell: yum -y install mousepad
+#     shell: yum -y install mousepad
+      yum:
+        name: mousepad
+        state: present
+
+
 #   - name: create texteditor.desktop
 #     shell: |
 #       echo '[Desktop Entry]
