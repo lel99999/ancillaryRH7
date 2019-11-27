@@ -131,13 +131,16 @@
 #       StartupNotify=true' >> /home/vagrant/Desktop/texteditor.desktop
     - name: Install python-pip
       shell: yum install -y python27 python-pip
+
     - name: install gdown
-      shell: pip install gdown  
+      shell: pip3 install gdown  
 #     yum:
 #       name: python27-python-pip
 #       state: latest
+         
     - name: Install python 3.6 and pip
       shell: yum install -y python36 python36-pip
+
     - name: Install bash autocomplete
       shell: yum install -y bash-completion bash-completion-extras
 
@@ -170,9 +173,17 @@
     - name: make stattransfer14 install directory
       shell: mkdir -p /usr/local/StatTransfer14
 
+    - name: check for artifacts dir
+      stat:
+        path: /artifacts
+      register: artifactsdir
+
+    - debug: var="{{ artifactsdir.stat.exist }}"
+
     - name: make /artifacts dir
       shell: mkdir -p /artifacts
       when: envir == "DEV.local" or envir == "DEV"
+
     - name: check if symlink exists
       stat: path=/artifacts/stlinux64_install
       register: symlink
