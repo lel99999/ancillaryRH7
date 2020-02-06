@@ -18,8 +18,20 @@ Vagrant.configure("2") do |config|
     ancillaryRH7.vm.hostname = "ancillaryRH7"
     ancillaryRH7.vm.network "private_network", ip: "192.168.60.149"
     ancillaryRH7.vm.provision "shell", :inline => "sudo echo '192.168.60.189 ancillaryRH7.local ancillaryRH7' >> /etc/hosts"
-    ancillaryRH7.vm.provision "ansible" do |ansible|
+
+    # Default
+    ancillaryRH7.vm.provision "main", type: "ansible" do |ansible|
       ansible.playbook = "deploy_ancillaryRH7.dev_local"
+      ansible.inventory_path = "vagrant_hosts"
+      #ansible.tags = ansible_tags
+      #ansible.verbose = ansible_verbosity
+      #ansible.extra_vars = ansible_extra_vars
+      #ansible.limit = ansible_limit
+    end
+    # Update
+    ancillaryRH7.vm.provision "update", type: "ansible" do |ansible|
+      ansible.playbook = "deploy_ancillaryPatchRH7.dev_local"
+#     ansible.playbook = "deploy_ancillaryRH7.dev_local"
       ansible.inventory_path = "vagrant_hosts"
       #ansible.tags = ansible_tags
       #ansible.verbose = ansible_verbosity
