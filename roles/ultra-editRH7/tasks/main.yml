@@ -17,3 +17,9 @@
 # when: custom_repo
 # tags:
 #   - UltraEdit
+
+- name: Install Aspell Spell Checker
+  yum:
+    name: aspell
+    state: present
+    disable_gpg_check: yes
